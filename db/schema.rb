@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
     t.bigint "account_id"
     t.bigint "conversation_id"
     t.bigint "participant_account_ids", default: [], null: false, array: true
+    t.bigint "status_ids", default: [], null: false, array: true
     t.bigint "last_status_id"
     t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
     t.index ["account_id"], name: "index_conversation_accounts_on_account_id"
@@ -172,9 +173,9 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
     t.boolean "irreversible", default: false, null: false
-    t.boolean "whole_word", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "whole_word", default: true, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 
@@ -184,7 +185,6 @@ ActiveRecord::Schema.define(version: 2018_09_29_222014) do
     t.datetime "updated_at", null: false
     t.integer "severity", default: 0
     t.boolean "reject_media", default: false, null: false
-    t.boolean "reject_reports", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
